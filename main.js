@@ -1,19 +1,17 @@
+var jsos = '[{ "x": "10", "y": "10","w": "50","h": "50","color": "#4530E3"}]';
 var canvas;
 var ctx;
 var x = 50;
 var y = 50;
 var lives = 3;
 var myPics = new Array();
-var myPics = ["pics/1.jpg", "pics/2.jpg", "pics/2.jpg", "pics/4.jpg"];
 var s1, s2, s3, s4, s5;
-
-myPics.push("5.jpg");
 
 var myXs = [];
 for (let i = 1; i < 4; i++) {
     myXs.push(50 * i);
 }
-setInterval(update, 1000);
+//setInterval(update, 1000);
 //get ready
 
 $(document).ready(function () {
@@ -30,15 +28,16 @@ $(document).ready(function () {
 
 function setup() {
     canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
+    ctx = canvas.getContext("2d");
     s1 = new Square(x, y, 50, 50, "#4530E3")
-    s2 = new Square(x, y, 50, 50, "#4530E3")
-    s3 = new Square(x, y, 50, 50, "#4530E3")
+    s2 = new Square(x, y, 20, 20, "#4530E3")
+    s3 = new Square(x, y, 0, 50, "#4530E3")
     s4 = new Square(x, y, 50, 50, "#4530E3")
 
     $.getJSON("Json.json"), function (data) {
+        console.log(data);
         for (var i = 0; i < data.squares.length; i++) {
-            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i]))
+            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].width, data.squares[i].height, data.squares[i].color));
         }
     }
     drawSquare()
@@ -46,19 +45,9 @@ function setup() {
 }
 
 function drawSquare() {
-    ctx.fillRect(0, 0, 20, 20);
-    ctx.fillStyle = s1.mainColor;
-    ctx.fillRect(s1.x, s1.y, s1.width, s1.height);
-    ctx.fillStyle = s2.mainColor;
-    ctx.fillRect(s2.x, s2.y, s2.width, s2.height);
-    ctx.fillStyle = s3.mainColor;
-    ctx.fillRect(s3.x, s3.y, s3.width, s3.height);
-    ctx.fillStyle = s4.mainColor;
-    ctx.fillRect(s4.x, s4.y, s4.width, s4.height); ctx.fillStyle = s5.mainColor;
-    ctx.fillRect(s5.x, s5.y, s5.width, s5.height);
-    for (var i = 0 i < myPics.length; i++) {
+    for (var i = 0; i < myPics.length; i++) {
         ctx.fillStyle = myPics[i].mainColor;
-        ctx.fillRect(myPics[i].x, myPics[i].y, myPics[i].width, myPics[i].length)
+        ctx.fillRect(myPics[i].x, myPics[i].y, myPics[i].width, myPics[i].height);
     }
     ctx.font = "24px Arial";
     ctx.fillText("lives:" + lives, 50, 50);
@@ -98,7 +87,6 @@ function moveLeft() {
 function moveRight() {
     square1.setX(square1.theX + 10);
 }
-drawSquare()
 
 function hasCollided(object1, object2) {
     return !(
