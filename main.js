@@ -1,15 +1,11 @@
-var canvas = document.getElementsById("myCanvas");
-var ctx = canvas.getContext("2d");
+var canvas;
+var ctx;
+var x = 50;
+var y = 50;
 var lives = 3;
 var myPics = new Array();
 var myPics = ["pics/1.jpg", "pics/2.jpg", "pics/2.jpg", "pics/4.jpg"];
-
-
-var s1;
-var s2;
-var s3;
-var s4;
-var s5;
+var s1, s2, s3, s4, s5;
 
 myPics.push("5.jpg");
 
@@ -17,10 +13,19 @@ var myXs = [];
 for (let i = 1; i < 4; i++) {
     myXs.push(50 * i);
 }
-
-
-
 setInterval(update, 1000);
+//get ready
+
+$(document).ready(function () {
+
+    setup();
+
+    $(this).keypress(function (event) {
+        getKey(event);
+    });
+});
+
+
 
 
 function setup() {
@@ -60,14 +65,7 @@ function drawSquare() {
 }
 
 
-$(document).ready(function () {
 
-    setup();
-
-    $(this).keypress(function (event) {
-        getKey(event);
-    });
-});
 
 function getKey(event) {
     var char = event.which || event.keyCode;
