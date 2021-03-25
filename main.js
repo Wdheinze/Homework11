@@ -1,8 +1,9 @@
-var canvas =
-    document.getElementsById("myCanvas");
+var canvas = document.getElementsById("myCanvas");
 var ctx = canvas.getContext("2d");
+var lives = 3;
 var myPics = new Array();
 var myPics = ["pics/1.jpg", "pics/2.jpg", "pics/2.jpg", "pics/4.jpg"];
+
 
 var s1;
 var s2;
@@ -30,6 +31,11 @@ function setup() {
     s3 = new Square(x, y, 50, 50, "#4530E3")
     s4 = new Square(x, y, 50, 50, "#4530E3")
 
+    $.getJSON("Json.json"), function (data) {
+        for (var i = 0; i < data.squares.length; i++) {
+            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i]))
+        }
+    }
     drawSquare()
 
 }
@@ -45,6 +51,12 @@ function drawSquare() {
     ctx.fillStyle = s4.mainColor;
     ctx.fillRect(s4.x, s4.y, s4.width, s4.height); ctx.fillStyle = s5.mainColor;
     ctx.fillRect(s5.x, s5.y, s5.width, s5.height);
+    for (var i = 0 i < myPics.length; i++) {
+        ctx.fillStyle = myPics[i].mainColor;
+        ctx.fillRect(myPics[i].x, myPics[i].y, myPics[i].width, myPics[i].length)
+    }
+    ctx.font = "24px Arial";
+    ctx.fillText("lives:" + lives, 50, 50);
 }
 
 
