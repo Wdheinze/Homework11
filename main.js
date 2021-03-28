@@ -29,24 +29,24 @@ $(document).ready(function () {
 function setup() {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d");
-   
-/*    s1 = new Square(x, y, 50, 50, "#4530E3")
-    s2 = new Square(x, y, 20, 20, "#4530E3")
-    s3 = new Square(x, y, 0, 50, "#4530E3")
-    s4 = new Square(x, y, 50, 50, "#4530E3")
-*/
-// the function was closed when the ")" was after the .json" part.  In jQuery
-// the function isn't closed until the end.
-    $.getJSON("Json.json", function(data) {
+
+    /*    s1 = new Square(x, y, 50, 50, "#4530E3")
+        s2 = new Square(x, y, 20, 20, "#4530E3")
+        s3 = new Square(x, y, 0, 50, "#4530E3")
+        s4 = new Square(x, y, 50, 50, "#4530E3")
+    */
+    // the function was closed when the ")" was after the .json" part.  In jQuery
+    // the function isn't closed until the end.
+    $.getJSON("Json.json", function (data) {
         console.log(data);
-            for (var i = 0; i < data.squares.length; i++) {
-                // the width and height is "w" and "h" in your json file
-                myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color));
-            }
-            drawSquare();
-        });
-        
-    
+        for (var i = 0; i < data.squares.length; i++) {
+            // the width and height is "w" and "h" in your json file
+            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color));
+        }
+        drawSquare();
+    });
+
+
 }
 
 function drawSquare() {
@@ -55,7 +55,7 @@ function drawSquare() {
         ctx.fillRect(myPics[i].x, myPics[i].y, myPics[i].width, myPics[i].height);
     }
     ctx.font = "24px Arial";
-    ctx.fillText("lives:" + lives, 50, 50);
+    ctx.fillText("Lives:" + lives, 50, 50);
 }
 
 
@@ -81,20 +81,21 @@ function getKey(event) {
 
 
 function moveUp() {
-    square1.setY(square1.theY - 10);
+    s1.setY(s1.theY - 10);
 }
 
 function moveDown() {
-    square1.setY(square1.theY + 10);
+    s1.setY(s1.theY + 10);
 }
 
 function moveLeft() {
-    square1.setX(square1.theX - 10);
+    s1.setX(s1.theX - 10);
 }
 
 function moveRight() {
-    square1.setX(square1.theX + 10);
+    s1.setX(s1.theX + 10);
 }
+
 
 function hasCollided(object1, object2) {
     return !(
