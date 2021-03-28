@@ -1,4 +1,4 @@
-var jsos = '[{ "x": "10", "y": "10","w": "50","h": "50","color": "#4530E3"}]';
+//var jsos = '[{ "x": "10", "y": "10","w": "50","h": "50","color": "#4530E3"}]';
 var canvas;
 var ctx;
 var x = 50;
@@ -29,19 +29,24 @@ $(document).ready(function () {
 function setup() {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d");
-    s1 = new Square(x, y, 50, 50, "#4530E3")
+   
+/*    s1 = new Square(x, y, 50, 50, "#4530E3")
     s2 = new Square(x, y, 20, 20, "#4530E3")
     s3 = new Square(x, y, 0, 50, "#4530E3")
     s4 = new Square(x, y, 50, 50, "#4530E3")
-
-    $.getJSON("Json.json"), function (data) {
+*/
+// the function was closed when the ")" was after the .json" part.  In jQuery
+// the function isn't closed until the end.
+    $.getJSON("Json.json", function(data) {
         console.log(data);
-        for (var i = 0; i < data.squares.length; i++) {
-            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].width, data.squares[i].height, data.squares[i].color));
-        }
-    }
-    drawSquare()
-
+            for (var i = 0; i < data.squares.length; i++) {
+                // the width and height is "w" and "h" in your json file
+                myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color));
+            }
+            drawSquare();
+        });
+        
+    
 }
 
 function drawSquare() {
@@ -78,12 +83,15 @@ function getKey(event) {
 function moveUp() {
     square1.setY(square1.theY - 10);
 }
+
 function moveDown() {
     square1.setY(square1.theY + 10);
 }
+
 function moveLeft() {
     square1.setX(square1.theX - 10);
 }
+
 function moveRight() {
     square1.setX(square1.theX + 10);
 }
