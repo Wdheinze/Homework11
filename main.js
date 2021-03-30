@@ -41,7 +41,7 @@ function setup() {
         console.log(data);
         for (var i = 0; i < data.squares.length; i++) {
             // the width and height is "w" and "h" in your json file
-            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color));
+            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color,data.squares[i].image));
         }
         drawSquare();
     });
