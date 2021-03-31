@@ -1,24 +1,25 @@
 class Square {
 
-    constructor(xCoord, yCoord, objectHeight, objectWidth, color) {
+    constructor(xCoord, yCoord, objectHeight, objectWidth, color, image) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.objectHeight = objectHeight;
         this.objectWidth = objectWidth;
         this.color = color;
+        this.image = image;
     }
 
     get x() {
         return this.xCoord;
     }
 
-    set x(value) {
+    setX(value) {
         this.xCoord = value;
     }
     get y() {
         return this.yCoord;
     }
-    set y(value) {
+    setY(value) {
         this.yCoord = value;
     }
 
@@ -31,5 +32,8 @@ class Square {
     }
     get mainColor() {
         return this.color;
+    }
+    get mainImage() {
+        return this.image;
     }
 }

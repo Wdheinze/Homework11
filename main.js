@@ -30,13 +30,15 @@ function setup() {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d");
 
-    /*    s1 = new Square(x, y, 50, 50, "#4530E3")
-        s2 = new Square(x, y, 20, 20, "#4530E3")
-        s3 = new Square(x, y, 0, 50, "#4530E3")
-        s4 = new Square(x, y, 50, 50, "#4530E3")
-    */
+    s1 = new Square(x, y, 50, 50, "#4530E3")
+    /*    s2 = new Square(x, y, 20, 20, "#4530E3")
+       s3 = new Square(x, y, 0, 50, "#4530E3")
+       s4 = new Square(x, y, 50, 50, "#4530E3")
+   */
     // the function was closed when the ")" was after the .json" part.  In jQuery
     // the function isn't closed until the end.
+    myPics.push(s1);
+    //console.log(myPics[0].y);
     $.getJSON("Json.json", function (data) {
         console.log(data);
         for (var i = 0; i < data.squares.length; i++) {
@@ -50,6 +52,7 @@ function setup() {
 }
 
 function drawSquare() {
+    ctx.clearRect(0, 0, 800, 600);
     for (var i = 0; i < myPics.length; i++) {
         ctx.fillStyle = myPics[i].mainColor;
         ctx.fillRect(myPics[i].x, myPics[i].y, myPics[i].width, myPics[i].height);
@@ -62,6 +65,7 @@ function drawSquare() {
 
 
 function getKey(event) {
+
     var char = event.which || event.keyCode;
     var actualLetter = String.fromCharCode(char);
     if (actualLetter == "w") {
@@ -76,24 +80,32 @@ function getKey(event) {
     if (actualLetter == "d") {
         moveRight();
     }
+    for (let i = 1; i - myPics.length; i++) {
+        var collide = hasCollided(myPics[0], myPics[i]);
+        console.log(collide)
+    }
+
+
     drawSquare();
 }
 
 
 function moveUp() {
-    s1.setY(s1.theY - 10);
+
+    myPics[0].setY(myPics[0].y - 10);
+
 }
 
 function moveDown() {
-    s1.setY(s1.theY + 10);
+    myPics[0].setY(myPics[0].y + 10);
 }
 
 function moveLeft() {
-    s1.setX(s1.theX - 10);
+    myPics[0].setX(myPics[0].x - 10);
 }
 
 function moveRight() {
-    s1.setX(s1.theX + 10);
+    myPics[0].setX(myPics[0].x + 10);
 }
 
 
