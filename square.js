@@ -6,7 +6,7 @@ class Square {
         this.objectHeight = objectHeight;
         this.objectWidth = objectWidth;
         this.color = color;
-        this.image = image;
+
     }
 
     get x() {
@@ -33,7 +33,11 @@ class Square {
     get mainColor() {
         return this.color;
     }
+<<<<<<< HEAD
     get mainImage() {
+=======
+    get mainImage(){
+>>>>>>> bf37cd335686a146bbf2b3e17384ae1f45ca15b0
         return this.image;
     }
 }
