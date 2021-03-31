@@ -33,10 +33,4 @@ class Square {
     get mainColor() {
         return this.color;
     }
-    get mainImage()
-
-    get mainImage() {
-
-        return this.image;
-    }
 }

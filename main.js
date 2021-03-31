@@ -43,7 +43,7 @@ function setup() {
         console.log(data);
         for (var i = 0; i < data.squares.length; i++) {
             // the width and height is "w" and "h" in your json file
-            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color,data.squares[i].image));
+            myPics.push(new Square(data.squares[i].x, data.squares[i].y, data.squares[i].w, data.squares[i].h, data.squares[i].color, data.squares[i].image));
         }
         drawSquare();
     });
@@ -116,4 +116,7 @@ function hasCollided(object1, object2) {
         ((object1.x + object1.width) < object2.x) ||
         (object1.x > (object2.x + object2.width))
     );
+}
+if (myPics + hasCollided == true) {
+    myPics.splice();
 }
