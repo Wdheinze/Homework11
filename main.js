@@ -117,6 +117,22 @@ function hasCollided(object1, object2) {
         (object1.x > (object2.x + object2.width))
     );
 }
-if (myPics + hasCollided == true) {
-    myPics.splice();
+if (myPics[0] + hasCollided == false) {
+    myPics.splice(myPics[1]);
+}
+if (myPics[0] + hasCollided == false) {
+    myPics.splice(myPics[2]);
+}
+if (myPics[0] + hasCollided == false) {
+    myPics.splice(myPics[3]);
+}
+if (myPics[0] + hasCollided == false) {
+    myPics.splice(myPics[4]);
+}
+if (myPics[0] + hasCollided == false) {
+    myPics.splice(myPics[5]);
+}
+
+if (hasCollided == false) {
+    lives == -1;
 }
